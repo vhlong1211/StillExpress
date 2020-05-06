@@ -1,0 +1,30 @@
+h1 This is Library data
+
+form(action='/transaction/create',method='POST')
+  
+
+  select(name='userID')
+    each item in users
+      option(value=item.id) 
+        span=item.name
+  select(name='bookID')
+    each item in books
+      option(value=item.id) 
+        span= item.title
+  button Create
+  
+ul
+  each item in meow
+    li
+    span=item.userID
+    span -
+    span=item.bookID 
+    span -
+    a(href='/transaction/'+item.id+'/complete') Xong
+    
+    
+    
+//    label(for='ip1') userID
+    input(type='text',name='userID',id='ip1')
+  label(for='ip2') bookID  
+    input(type='text',name='bookID',id='ip2')

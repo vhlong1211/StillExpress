@@ -1,0 +1,16 @@
+h3 This is the list of books
+
+ul
+  each item in meow
+    li
+    span=item.title
+    span -
+    span=item.descr
+    span &nbsp
+    span
+      img(src=item.coverUrl width='100')
+    span &nbsp
+    a(href='/books/'+item.id+'/delete') Cut
+    span &nbsp
+    a(href='/books/'+item.id+'/update/') Update
+a(href='/create') NewBook

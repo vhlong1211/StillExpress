@@ -1,0 +1,11 @@
+h3 Login
+form(action='/auth/login',method='POST')
+  label(for='ip1') Email
+    input(type='text',name='email',id='ip1',value=values ? values.email : "")
+  label(for='ip2') Pass
+    input(type='text',name='pass',id='ip2',value=values ? values.pass : "")
+  button Login
+  
+if errors
+  each error in errors
+    .alert.alert-danger= error

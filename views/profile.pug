@@ -1,0 +1,9 @@
+form(action='/profile/'+meow.id,method='POST',enctype="multipart/form-data")
+  label(for='ip1') Rename
+    input(type='text',name='name',id='ip1')
+  label(for='ip2') UpdateAvatar
+    input(type='file',name='avatar',id='ip2')
+ 
+  button Submit
+  
+img(src=meow.avatar?meow.avatar:'http:lorempixel.com/400/200')

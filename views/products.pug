@@ -1,0 +1,43 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+  title Document
+nav.navbar.navbar-expand-sm.bg-light.navbar-light
+  ul.navbar-nav
+    li.nav-item.active
+      a.nav-link(href='/books') Books
+    li.nav-item
+      a.nav-link(href='/users') Users
+    li.nav-item
+      a.nav-link(href='/transaction') Transaction
+div
+  h3 Products
+  
+.container
+  each item in products
+    .row
+      .card-columns
+        .card(style='width:300px')
+          img.card-img-top(src=item.image alt='Card image' style='width:100%')
+          .card-body
+            h4.card-title 
+            span=item.name
+            p.card-text 
+            div=item.description
+            a.btn.btn-primary(href='/cart/'+item.id) Add
+            
+a.btn.btn-primary(href='/buy') Mua
+.container
+  ul.pagination
+    li.page-item
+      a.page-link(href='#') Previous
+    li.page-item
+      a.page-link(href='#') 1
+    li.page-item
+      a.page-link(href='#') 2
+    li.page-item
+      a.page-link(href='#') 3
+    li.page-item
+      a.page-link(href='#') Next
