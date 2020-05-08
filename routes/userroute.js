@@ -8,7 +8,7 @@ db.defaults({books:[]},{users:[]})
   .write()*/
 
 const controller=require('../controller/usercontrol')
-const validate=require('../validate/uservalidate')
+const validate=require('../middlewares/uservalidate')
 const authMiddle=require('../middlewares/authwares')
 
 router.get('/',authMiddle.check,controller.index)

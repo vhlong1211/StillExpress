@@ -1,9 +1,20 @@
-form(action='/profile/'+meow.id,method='POST',enctype="multipart/form-data")
-  label(for='ip1') Rename
-    input(type='text',name='name',id='ip1')
-  label(for='ip2') UpdateAvatar
-    input(type='file',name='avatar',id='ip2')
- 
-  button Submit
-  
-img(src=meow.avatar?meow.avatar:'http:lorempixel.com/400/200')
+html
+  head
+    link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+    <link rel="shortcut icon",type="image/png",href="https://cdn.glitch.com/fddf319c-85c1-4913-a668-f1a5380d01d5%2Ffavicon.png">
+    <link rel="stylesheet" type="text/css" href="/style/custom.css">
+  body
+
+    div.container
+      form(action='/profile/'+meow.id,method='POST',enctype="multipart/form-data")
+        div.form-group
+          label(for='ip1') Rename
+            input(type='text',name='name',id='ip1',class='form-control')
+        div.form-group
+          label(for='ip2') UpdateAvatar
+            input(type='file',name='avatar',id='ip2',class='form-control')
+      
+        button Submit
+      
+      p.border.d-inline-flex Current Avatar:
+      img(src=meow.avatar?meow.avatar:'http:lorempixel.com/400/200',style='margin-left:100px',width='200')
