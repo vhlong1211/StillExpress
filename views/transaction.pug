@@ -35,12 +35,12 @@ html
           each item in meow
             tr
               td 
-                span=item.userID
+                span=item.userId
               td
-                span=item.bookID 
+                span=item.bookId 
               td
                  a(href='/transaction/'+item.id+'/complete') Xong
-
+    a(href='/' class='btn btn-success' style='margin-left:170px') Back
 
       //- ul
       //-   each item in meow

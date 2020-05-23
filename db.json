@@ -7,73 +7,30 @@
       "coverUrl": "uploads/3e27960d4fec1181ff8e11debfbae723"
     },
     {
-      "title": "Wake up your dick",
+      "title": "",
       "descr": "Not for >20",
-      "id": "75na2DxIr"
+      "id": "75na2DxIr",
+      "coverUrl": "uploads/0d8a8ae5d4ab2924bff3139a982eb715"
     },
     {
-      "title": "Use your boy as a weapon",
+      "title": "",
       "descr": "",
-      "id": "D75vpyuUo"
-    },
-    {
-      "title": "Sound like a joke",
-      "descr": "=)))",
-      "id": "_XaYx53rd"
-    },
-    {
-      "title": "Living like animals",
-      "descr": "~~",
-      "id": "0fiNqvwUu"
-    },
-    {
-      "title": "Live like a flowerrr",
-      "descr": "for rapper",
-      "id": "4DIMZjHPQ"
+      "id": "D75vpyuUo",
+      "coverUrl": "uploads/9081330023128a3652c4f2d5b9e05018"
     }
   ],
   "users": [
     {
-      "name": "oyoyo",
-      "id": "6bUtZ4YI0"
-    },
-    {
-      "name": "giangxinhgai",
-      "id": "8NoC241rJ",
-      "email": "gxg@ggg",
-      "pass": "4297f44b13955235245b2497399d7a93",
-      "avatar": "uploads/8684cdb9b034ec49f83aa4eab9bbf79b"
-    },
-    {
-      "name": "<3",
-      "id": "WGxvkCC2M"
-    },
-    {
-      "name": "yaya",
-      "id": "2SU21Dppd"
-    },
-    {
-      "name": "Ngoa Long",
-      "id": "WaoaaBVCw"
-    },
-    {
-      "name": "Phuong So",
-      "id": "yFK1u8Kc3"
-    },
-    {
-      "name": "the one that you know his name",
-      "id": "PnKEpdJXO"
-    },
-    {
-      "name": "qweqweqwe",
-      "id": "KHKH3kZPT"
-    },
-    {
       "name": "Long",
-      "id": "qwerdf",
       "email": "longdick@lll",
       "pass": "4297f44b13955235245b2497399d7a93",
       "isAdmin": true
+    },
+    {
+      "name": "Gangsqweqw",
+      "email": "qqq@aaa.iii",
+      "pass": "123123",
+      "isAdmin": false
     }
   ],
   "session": [
@@ -102,87 +59,35 @@
       "id": "i4EEfq4ex"
     },
     {
-      "id": "frcLhp0Ic"
+      "id": "frcLhp0Ic",
+      "cart": {
+        "2a426c3e-5180-429c-b81c-b8e48710e1d1": 1,
+        "e9ae39c5-9403-4f30-8e66-d11f5301cda4": 1,
+        "e9a4f55a-3954-4128-8c80-d35a9611f97e": 1,
+        "16ab9b13-a3aa-4395-8db8-822ea9d3fba4": 1,
+        "9fd60252-b832-4756-b67f-3cb589df77d7": 1,
+        "0aa10af5-188b-45f4-b150-f79425117548": 1,
+        "52bc6e5b-8d48-49db-b995-a9f9b75e717c": 1
+      }
+    },
+    {
+      "id": "jgcMbcDCR",
+      "cart": {
+        "b0f20161-44bb-4ed4-9840-352d4e64fb94": 1,
+        "2a426c3e-5180-429c-b81c-b8e48710e1d1": 1
+      }
+    },
+    {
+      "id": "23YB1sbkP"
+    },
+    {
+      "id": "-0RgTAsbQ",
+      "cart": {
+        "5ebc186e90d255030c7a71a4": 1
+      }
     }
   ],
-  "transaction": [
-    {
-      "userID": "WGxvkCC2M",
-      "bookID": "_XaYx53rd",
-      "id": "D0ZIAGZuc",
-      "isComplete": true
-    },
-    {
-      "userID": "8NoC241rJ",
-      "bookID": "4DIMZjHPQ",
-      "id": "rgxFTMnM1",
-      "isComplete": true
-    },
-    {
-      "userID": "2SU21Dppd",
-      "bookID": "_XaYx53rd",
-      "id": "AGo6MHIUC",
-      "isComplete": true
-    },
-    {
-      "userID": "8NoC241rJ",
-      "bookID": "4DIMZjHPQ",
-      "id": "swqJ9j07m",
-      "isComplete": true
-    },
-    {
-      "userID": "6bUtZ4YI0",
-      "bookID": "BMFKGySE0",
-      "isComplete": false
-    },
-    {
-      "userID": "6bUtZ4YI0",
-      "bookID": "BMFKGySE0",
-      "isComplete": false
-    },
-    {
-      "userID": "8NoC241rJ",
-      "bookID": "75na2DxIr",
-      "id": "HUoux5Gpa",
-      "isComplete": false
-    },
-    {
-      "userID": "8NoC241rJ",
-      "bookID": "D75vpyuUo",
-      "id": "CmHsdwbnO",
-      "isComplete": false
-    },
-    {
-      "userID": "6bUtZ4YI0",
-      "bookID": "BMFKGySE0",
-      "id": "H4ff3KMrY",
-      "isComplete": false
-    },
-    {
-      "userID": "WaoaaBVCw",
-      "bookID": "_XaYx53rd",
-      "id": "mSYQP7okD",
-      "isComplete": false
-    },
-    {
-      "userID": "KHKH3kZPT",
-      "bookID": "BMFKGySE0",
-      "id": "QmYE01RrQ",
-      "isComplete": false
-    },
-    {
-      "userID": "6bUtZ4YI0",
-      "bookID": "BMFKGySE0",
-      "id": "KBlTECzhd",
-      "isComplete": false
-    },
-    {
-      "userID": "6bUtZ4YI0",
-      "bookID": "4DIMZjHPQ",
-      "id": "q7dnOhcJ1",
-      "isComplete": false
-    }
-  ],
+  "transaction": [],
   "products": [
     {
       "id": "f4e97403-b623-43bc-9ceb-764ff2562fbe",

@@ -1,19 +1,21 @@
-var db=require('../views/db');
+var User=require('../Models/user.model');
+var Transaction=require('../Models/trans.model');
 var md5=require('md5');
 var wrongCount=0;
-module.exports.login=function(req,res){
+module.exports.login=async function(req,res){
+  var users=await User.find();
   res.render('login.pug',{
-    users:db.get('users').value()
+    users:users
   });
 }
 //console.log(md5('123123'));
-module.exports.postLogin=function(req,res){
+module.exports.postLogin=async function(req,res){
   var email=req.body.email;
   var pass=md5(req.body.pass);
-  
-  var user=db.get('users').find({email:email}).value();
-  
-  var transaction=db.get('transaction').value();
+  var user=await User.findOne({email:email});
+  //var user=db.get('users').find({email:email}).value();
+  var transaction=await Transaction.find();
+  //var transaction=db.get('transaction').value();
   var errors=[];
   var borrowList=[];
   

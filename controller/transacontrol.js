@@ -1,15 +1,21 @@
-var db=require('../views/db');
+//var db=require('../views/db');
+var User=require('../Models/user.model');
+var Transaction=require('../Models/trans.model');
+var Book=require('../Models/books.model')
 
 
-
-module.exports.display=function(req,res){
+module.exports.display=async function(req,res){
     //  console.log(db.get('transaction').value());
     //  console.log(db.get('books').value());
     //  console.log(db.get('users').value())
+
+    var books=await Book.find();
+    var users=await User.find();
+    var trans=await Transaction.find();
       res.render('transaction',{
-        meow:db.get('transaction').value(),
-        books:db.get('books').value(),
-        users:db.get('users').value()
+        meow:trans,
+        books:books,
+        users:users
       });
     }
 
@@ -19,11 +25,12 @@ module.exports.display=function(req,res){
       }
 
 
-    module.exports.complete=function(request,response){
+    module.exports.complete=async function(request,response){
         var id=request.params.id;
       //  console.log(request.params)
         var count=0;
-        for(var item of db.get('transaction').value()){
+        var trans=await Transaction.find();
+        for(var item of trans){
           if(id===item.id){
             count++;
           }
@@ -33,19 +40,21 @@ module.exports.display=function(req,res){
           return;
         }
       //  console.log(db.get('transaction').value());
-       db.get('transaction')
-        .find({ id: id })
-        .assign({ isComplete: true})
-        .write()
+       await Transaction.updateOne({_id:id},{$set:{isComplete:true}})
+      //  db.get('transaction')
+      //   .find({ id: id })
+      //   .assign({ isComplete: true})
+      //   .write()
         response.redirect('/transaction');
       }
 
  
 
-    module.exports.postCreate=function(req,res){
-        req.body.id=shortid.generate();
+    module.exports.postCreate=async function(req,res){
+        console.log(req.body);
         req.body.isComplete=false;
-        db.get('transaction').push(req.body).write();
+        await Transaction.create({userId:req.body.userID,bookId:req.body.bookID,isComplete:false})
+       // db.get('transaction').push(req.body).write();
        // console.log(req.body);
         res.redirect('/transaction'); 
       }
