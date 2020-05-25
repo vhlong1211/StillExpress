@@ -18,6 +18,7 @@ var Book=require('./Models/books.model');
 var User=require('./Models/user.model');
 var Products=require('./Models/products.model');
 var Session=require('./Models/session.model.js');
+var Transaction=require('./Models/trans.model.js');
 
 var authMiddles=require('./middlewares/authwares')
 var sessionMiddleware=require('./middlewares/session');
@@ -146,23 +147,25 @@ app.get('/cart/:id',authMiddles.check,async function(req,res){
   }
   let hailong = await Products.findOne({ _id : id });
 
-  try {
-    let cart = await Session.findOne({ ssid : sessionId });
+  //try {
+    let cartt = await Session.findOne({ ssid : sessionId });
+    console.log(cartt)
+    console.log(cartt.cart[0])
     // if this products does exist in your cart
-    if(cart) {
-      let itemIndex = cart.cart.findIndex(p => p.productId == productId)
+    if(cartt) {
+      let itemIndex = cartt.cart.findIndex(p => p.productId === id)
       if (itemIndex > -1) {
         //product exists in the cart, update the quantity
-        const productItem = cart.cart[itemIndex]
+        const productItem = cartt.cart[itemIndex]
         let count = productItem.quantity
         ++count
         productItem.quantity = count
       }
       else {
         // no cart for user, add products to cart
-        cart.cart.push(currPro) //push products into this function
+        cartt.cart.push(currPro) //push products into this function
       }
-      cart = await cart.save();
+      cartt = await cartt.save();
     }
     else {
       await Session.create({
@@ -175,26 +178,29 @@ app.get('/cart/:id',authMiddles.check,async function(req,res){
         ]
       })
     }
-  } 
-  catch (err) {
-    res.status(500).send("Something went wrong")
-  }
+  // } 
+  // catch (err) {
+  //   res.status(500).send("Something went wrong")
+  // }
 //    console.log(db.get('session').value());
 //  res.redirect('/products')
 
 })
-app.get('/buy',authMiddles.check,function(req,res){
+app.get('/buy',authMiddles.check,async function(req,res){
   var sessionId=req.signedCookies.sessionId;
-  var data= db.get('session').find({id:sessionId}).value();
+  let cartt = await Session.findOne({ ssid : sessionId });
+  console.log(cartt);
+  //var data= db.get('session').find({id:sessionId}).value();
  // console.log(req.locals);
  // console.log(data);
-  for(var x in data.cart){
+  for(var x of cartt.cart){
    // console.log(data.cart[x],x)
-    for(var i=1;i<=data.cart[x];i++){
+    for(var i=1;i<=x.quantity;i++){
       req.body.userID=req.locals.id;
-      req.body.bookID=x
+      req.body.bookID=x.productId
    //   console.log(req.body.bookID+'-////-'+x);
-      db.get('transaction').push({userID:req.locals.id,bookID:x}).write();
+   //   db.get('transaction').push({userID:req.locals.id,bookID:x}).write();
+   await Transaction.create({userId:req.body.userID,bookId:req.body.bookID,isComplete:false});
     }
   }
   res.redirect('/transaction')
