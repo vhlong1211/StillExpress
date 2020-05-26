@@ -13,6 +13,7 @@ mongoose.connect('mongodb://localhost:27017/Erection', {useNewUrlParser: true, u
 var userRoute=require('./routes/userroute')
 var authRoute=require('./routes/authroute')
 var transaction=require('./routes/transaction.js')
+var apitrans=require('./api/routes/api.transactions');
 
 var Book=require('./Models/books.model');
 var User=require('./Models/user.model');
@@ -41,7 +42,12 @@ app.get('/',function(req,res){
   res.render('layout.pug');
 })
 
-
+app.get('/api/books',async function(req,res){
+  // console.log(count);
+  // console.log(req.cookies);
+   var books=await Book.find()
+   res.json(books);
+ })
 app.get('/books',async function(req,res){
  // console.log(count);
  // console.log(req.cookies);
@@ -243,6 +249,7 @@ app.post('/profile/:id',upload.single('avatar'),authMiddles.check,async function
 app.use('/users',userRoute)
 app.use('/auth',authRoute)
 app.use('/transaction',transaction)
+app.use('/api',apitrans);
 // listen for requests :)
 const listener = app.listen(3000, () => {
   console.log("Your app is listening on port " + listener.address().port);

@@ -8,6 +8,10 @@ module.exports.login=async function(req,res){
     users:users
   });
 }
+module.exports.apilogin=function(req,res){
+  //var users=await User.find(req.body);
+  res.json(req.body);
+}
 //console.log(md5('123123'));
 module.exports.postLogin=async function(req,res){
   var email=req.body.email;

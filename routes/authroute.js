@@ -12,6 +12,6 @@ const controller=require('../controller/authcontrol')
 
 router.get('/login',controller.login);
 router.post('/login',controller.postLogin);
-
+router.post('/api/login',controller.apilogin);
 module.exports=router;
 
