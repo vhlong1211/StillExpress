@@ -48,10 +48,15 @@ app.get('/api/books',async function(req,res){
    var books=await Book.find()
    res.json(books);
  })
-app.get('/books',async function(req,res){
+app.get('/books',async function(req,res,){
  // console.log(count);
  // console.log(req.cookies);
   var books=await Book.find()
+  try{
+    var a; a.b();
+  }catch(err){
+  
+  }
   res.render('library.pug',{
     meow:books
   });
