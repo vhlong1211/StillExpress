@@ -7,8 +7,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const shortid=require('shortid'); 
+var port=process.env.PORT||3000;
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Erection', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 //console.log(process.env.SESSION_SECRET);
 var userRoute=require('./routes/userroute')
 var authRoute=require('./routes/authroute')
@@ -256,6 +257,6 @@ app.use('/auth',authRoute)
 app.use('/transaction',transaction)
 app.use('/api',apitrans);
 // listen for requests :)
-const listener = app.listen(3000, () => {
+const listener = app.listen(port, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
