@@ -1,0 +1,12 @@
+form(action='/users/createUser',method='POST')
+  label(for='ip1') Name
+    input(type='text',name='name',id='ip1')
+  label(for='ip2') Email
+    input(type='email',name='email',id='ip2')
+  label(for='ip3') Pass
+    input(type='password',name='pass',id='ip3')    
+ 
+  button Create
+if errors
+  each error in errors
+    .alert.alert-danger= error
