@@ -15,7 +15,7 @@ module.exports.apilogin=function(req,res){
 //console.log(md5('123123'));
 module.exports.postLogin=async function(req,res){
   var email=req.body.email;
-  var pass=md5(req.body.pass);
+  var pass=req.body.pass;
   var user=await User.findOne({email:email});
   //var user=db.get('users').find({email:email}).value();
   var transaction=await Transaction.find();

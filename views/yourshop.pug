@@ -1,5 +1,3 @@
-
-
 doctype html
 html(lang='en')
   head
@@ -12,33 +10,29 @@ html(lang='en')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
   body
     .container
-      h2= 'BookList'
-      p='For the one who seeking for knowledge'
+      h2= 'This is my shop'
+      
         
       table.table
         thead
           tr
             th Book 
             th Description
-            th Cut
-            th Update
-            th Cover
+            th Buy
+           
         tbody
-          each item in meow
+          each item in meow.booklist
             tr
               td 
                 span=item.title
               td 
-                span=item.descr
+                span=item.description
               td 
-                a(href='/books/'+item.id+'/delete') Cut
-              td 
-                a(href='/books/'+item.id+'/update/') Update
-              td 
-                img(src=item.coverUrl width='50')
+                a(href='/shops/'+item.title+'/buy/'+go+'/xx/'+meow.name) Buy
+             
 
-      a(href='/create' class='btn btn-success' style="margin:200px") Create  
+      a(href='/shops/'+meow.name+'/add' class='btn btn-success' style="margin:200px") Create  
        br     
       a(href='/' class='btn btn-success') Back
-     
-      
+       br
+      a(href='/shops/'+meow.name+'/transaction' class='btn btn-success') Ordered
