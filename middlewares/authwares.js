@@ -11,7 +11,7 @@ module.exports.check=async function(req,res,next){
  var checker=await User.findById(cookie)
  // var checker=db.get('users').find({id:cookie}).value();
   req.locals=checker;
- // console.log(req.locals);
+  //console.log(req.locals);
   if(!checker){
     res.redirect('/auth/login');
     return;

@@ -7,8 +7,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const shortid=require('shortid'); 
+var port=process.env.PORT||3000;
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Erection', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 //console.log(process.env.SESSION_SECRET);
 var userRoute=require('./routes/userroute')
 var authRoute=require('./routes/authroute')
@@ -20,7 +21,7 @@ var User=require('./Models/user.model');
 var Products=require('./Models/products.model');
 var Session=require('./Models/session.model.js');
 var Transaction=require('./Models/trans.model.js');
-
+var Shops=require('./Models/shops.model.js');
 var authMiddles=require('./middlewares/authwares')
 var sessionMiddleware=require('./middlewares/session');
 const multer  = require('multer')
@@ -232,23 +233,60 @@ app.post('/profile/:id',upload.single('avatar'),authMiddles.check,async function
   if(req.file){
   req.body.avatar = req.file.path.split('/').slice(1).join('/')
   await User.updateMany({_id:id},{$set:{name:req.body.name,avatar:req.body.avatar}})
-  // db.get('users')
-  // .find({ id: id })
-  // .assign({ name: req.body.name})
-  // .assign({avatar: req.body.avatar})
-  // .write()
   }
-//  console.log(req.body);
   await User.updateOne({_id:id},{$set:{name:req.body.name}})
-
-  // db.get('users')
-  // .find({ id: id })
-  // .assign({ name: req.body.name})
-  // .write()
-  //console.log(req.body)
   res.redirect('/users')
 })
 
+app.get('/shop',authMiddles.check,async function(req,res){
+  res.render('shop.pug',{
+    meow:req.locals
+  })
+})
+app.get('/shops/:name/books',authMiddles.check,async function(req,res){
+  var name=req.params.name;
+  //console.log(name);
+  //console.log(req.locals)
+  var yourShop=await Shops.findOne({name:name})
+  //console.log(yourShop);
+  res.render('yourshop.pug',{
+    meow:yourShop,
+    go:req.locals.email
+  })
+})
+app.get('/shops/:name/add',function(req,res){
+  var name=req.params.name;
+  res.render('addshop.pug',{
+    meow:name
+  })
+})
+app.post('/shops/:name/add',async function(req,res){
+  var name=req.params.name;
+  //console.log(req.body)
+  let yourBook = await Shops.findOne({ name : name });
+  //console.log(yourBook)
+  yourBook.booklist.push(req.body);
+  yourBook=await yourBook.save();
+  res.redirect('/shops/'+name+'/books');
+
+})
+app.get('/shops/:title/buy/:email/xx/:name',async function(req,res){
+  var email=req.params.email;
+  var title=req.params.title;
+  var name=req.params.name;
+  let yourSoft= await Shops.findOne({name:name});
+  yourSoft.transaction.push({customer:email,book:title});
+  yourSoft=await yourSoft.save();
+
+})
+app.get('/shops/:name/transaction',async function(req,res){
+  var name=req.params.name;
+  let yourSoft= await Shops.findOne({name:name});
+  yourSoft=await yourSoft.save();
+  res.render('shopTrans.pug',{
+    meow:yourSoft.transaction
+  })
+})
 
 
 app.use('/users',userRoute)
@@ -256,6 +294,6 @@ app.use('/auth',authRoute)
 app.use('/transaction',transaction)
 app.use('/api',apitrans);
 // listen for requests :)
-const listener = app.listen(3000, () => {
+const listener = app.listen(port, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
